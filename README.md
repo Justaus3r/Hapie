@@ -58,7 +58,7 @@ The Data about security of Hashes is based on my research about them.if you see 
 The tool is only for Educational purpose.i am not responsible for consequences of bad use..cheers!
 ### Bug Report:
 Wrong result...?
-Report a issue at https://github.com/Justaus3r/Hash-R/issues
+Report a issue at https://github.com/Justaus3r/Hapie/issues
 ### Contributions:
 All contributions are welcomed.if you have an suggestion for improvement you can mail me at x-neron@pm.me.
 ### License:
