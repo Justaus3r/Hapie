@@ -1,0 +1,5 @@
+whirlpool
+Crypto
+passlib
+argon2
+bcrypt
