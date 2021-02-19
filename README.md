@@ -37,7 +37,7 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 - SHA512_CRYPT
 - PBKDF2_SHA256
 - PBKDF2_SHA512
-- you can save the putput to a file
+- you can save the output to a file
 - random banner's
 #### Tested Operating system's:
 - Kali linux
