@@ -22,6 +22,8 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 - SHA256
 - SHA384
 - SHA512
+- BLAKE2B
+- BLAKE2S
 - LM
 - NT
 - NTLM
