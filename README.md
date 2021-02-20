@@ -40,7 +40,7 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 - you can save the output to a file
 - random banner's
 #### Tested Operating system's:
-- Kali linux
+- Kali linux(tested on python 3.8 and 3.9.1)
 #### Screenshot:
 ![screenshot](https://drive.google.com/uc?export=download&id=1f3IbB_VM9vhkSBkoS5Nae4-EyVG8KVGx)
 ### Changelog:
