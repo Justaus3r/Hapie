@@ -47,10 +47,10 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 ![screenshot](https://drive.google.com/uc?export=download&id=1f3IbB_VM9vhkSBkoS5Nae4-EyVG8KVGx)
 ### Changelog:
 
-| Date:         | Comment:                     | 
-| ------------- |:-------------:               | 
-| 19-feb-2021   | Initial Release              | 
- 
+| Date:         | Comment:                                       | 
+| ------------- |:-------------:                                 | 
+| 19-feb-2021   | Initial Release                                | 
+| 21-feb-2021   | Version 1.0.2 (Added support for File Hashing) |  
 
 #### Upcoming update:
 - ?
@@ -60,6 +60,7 @@ The Data about security of Hashes is based on my research about them.if you see 
 The tool is only for Educational purpose.i am not responsible for consequences of bad use..cheers!
 ### Bug Report:
 Wrong result...?
+Please consider reporting it to me.
 Report a issue at https://github.com/Justaus3r/Hapie/issues
 ### Contributions:
 All contributions are welcomed.if you have an suggestion for improvement you can mail me at x-neron@pm.me.
