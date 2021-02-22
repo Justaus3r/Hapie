@@ -41,6 +41,7 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 - PBKDF2_SHA512
 - you can save the output to a file
 - random banner's
+- A pretty progress bar
 #### Tested Operating system's:
 - Kali linux(tested on python 3.8 and 3.9.1)
 #### Screenshot:
