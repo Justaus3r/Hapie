@@ -52,7 +52,7 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 | ------------- |:-------------:                                 | 
 | 19-feb-2021   | Initial Release                                | 
 | 21-feb-2021   | Version 1.0.2 (Added support for File Hashing) |  
-
+| 22-feb-2021   | Added a progress bar                           | 
 #### Upcoming update:
 - ?
 #### Note:
