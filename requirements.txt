@@ -5,3 +5,4 @@ argon2_cffi==20.1.0
 argon2==0.1.10
 pycryptodome==3.10.1
 python_bcrypt==0.3.2
+rich
