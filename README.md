@@ -43,8 +43,8 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 - random banner's
 - A pretty progress bar
 #### Tested Operating system's:
-- Kali linux(tested on python 3.8 and 3.9.1)
-- Recommended version python 3.8
+- Kali linux
+- **Note:** Hapie.py won't run below python 3.9.1
 #### Screenshot:
 ![screenshot](https://drive.google.com/uc?export=download&id=1f3IbB_VM9vhkSBkoS5Nae4-EyVG8KVGx)
 ### Changelog:
@@ -54,6 +54,7 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 | 19-feb-2021   | Initial Release                                | 
 | 21-feb-2021   | Version 1.0.2 (Added support for File Hashing) |  
 | 22-feb-2021   | Added a progress bar                           | 
+| 12-mar-2021   | Small fixes                                    |
 #### Upcoming update:
 - ?
 #### Note:
