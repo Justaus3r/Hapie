@@ -69,3 +69,5 @@ Report a issue at https://github.com/Justaus3r/Hapie/issues
 All contributions are welcomed.if you have an suggestion for improvement you can mail me at x-neron@pm.me.if you are a developer and in 1/million chances you want to improve the sorry state code i have written,you are welcomed to fork it and [pull requests](https://github.com/Justaus3r/Hapie/pulls)
 ### License:
 Distributed under GPL3.0.
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=Justaus3r)
