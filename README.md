@@ -1,10 +1,10 @@
 ### Readme.md 👋
-## Hapie
+## Hapie.py
 ![License](https://img.shields.io/badge/License-GPL3.0-<brightgreen>)
 ![Contribution](https://img.shields.io/badge/Contributions-Welcome-<brightgreen>)
 ![Status](https://img.shields.io/badge/Status-Alive-<brightgreen>)
 ### Description 🔶
-Hapie is a command line cryptographic tool to play with various hashes.
+Hapie.py is a command line cryptographic tool to play with various hashes.
 ### Usage:
 First install all the requirements in ```requirements.txt``` using ```pip install -r requirements.txt``` &nbsp;
  
