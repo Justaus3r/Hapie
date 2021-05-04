@@ -44,6 +44,7 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 - A pretty progress bar
 #### Tested Operating system's:
 - Kali linux
+- Mac Os
 - 🔴 **Note:** 🔴  Hapie.py won't run below python 3.9.1
 #### Screenshot:
 ![screenshot](https://drive.google.com/uc?export=download&id=1f3IbB_VM9vhkSBkoS5Nae4-EyVG8KVGx)
