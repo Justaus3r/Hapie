@@ -59,7 +59,7 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 #### Upcoming update:
 - ?
 #### Note:
-The Data about security of Hashes is based on my research about them.if you see something wrong ,contact me at x-neron@pm.me
+The Data about security of Hashes is based on my research about them.if you see something wrong ,contact me at x-neron@pm.me or create a (issue)[https://github.com/Justaus3r/Hapie/issues]
 ### Disclaimer:
 The tool is only for Educational purpose.i am not responsible for consequences of bad use..cheers!
 ### Bug Report:
