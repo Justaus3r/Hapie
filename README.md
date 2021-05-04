@@ -7,7 +7,7 @@
 Hapie.py is a command line cryptographic tool to play with various hashes.
 ### Usage:
 First install all the requirements in ```requirements.txt``` using ```pip install -r requirements.txt``` &nbsp;
- 
+ then
  ```python Hapie.py -t "Onichan...you are idiot"```
  
  or &nbsp;
