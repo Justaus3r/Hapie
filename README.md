@@ -4,13 +4,18 @@
 ### Description 🔶
 A command line cryptographic tool to play with various hashes.
 ### Usage:
-First install all the requirements in ```requirements.txt``` using ```pip install -r requirements.txt``` &nbsp;
- then
- ```python Hapie.py -t "Onichan...you are idiot"```
- 
- or &nbsp;
- 
-``` python Hapie.py -t "Onichan...you are idiot" -o Onichan no baka.txt```
+First install all the requirements in requirements.txt using ```pip install -r requirements.txt```. 
+```
+Usage:
+ Hapie.py -t/-f [Optional -o <output file>]
+ -t   : For hashing a string
+ -f   : For hashing a file
+ -o   : Output hashes to a file
+Example:
+python3 Hapie.py -t "Hello World"       
+python3 Hapie.py -f Onichan_no_baka.txt  
+python Hapie.py -t "Hello World" -o File.txt 
+```
 #### Hashes supported/features:
 - MD2
 - MD4
@@ -48,7 +53,7 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 
 #### Screenshot:
 ![screenshot](https://drive.google.com/uc?export=download&id=1f3IbB_VM9vhkSBkoS5Nae4-EyVG8KVGx)
-### Changelog:
+### CommitTable:
 
 | Date:         | Comment:                                        | 
 | ------------- |:-------------:                                  | 
