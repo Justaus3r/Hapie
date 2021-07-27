@@ -1,10 +1,8 @@
-### Readme.md 👋
 ## Hapie.py
 ![License](https://img.shields.io/badge/License-GPL3.0-<brightgreen>)
 ![Contribution](https://img.shields.io/badge/Contributions-Welcome-<brightgreen>)
-![Status](https://img.shields.io/badge/Status-Alive-<brightgreen>)
 ### Description 🔶
-Hapie.py is a command line cryptographic tool to play with various hashes.
+A command line cryptographic tool to play with various hashes.
 ### Usage:
 First install all the requirements in ```requirements.txt``` using ```pip install -r requirements.txt``` &nbsp;
  then
@@ -45,7 +43,9 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 #### Tested Operating system's:
 - Kali linux
 - Mac Os
-- 🔴 **Note:** 🔴  Hapie.py won't run below python 3.9.1
+
+🔴 **Note:** 🔴  Hapie.py won't run below python 3.9.1
+
 #### Screenshot:
 ![screenshot](https://drive.google.com/uc?export=download&id=1f3IbB_VM9vhkSBkoS5Nae4-EyVG8KVGx)
 ### Changelog:
@@ -60,7 +60,7 @@ First install all the requirements in ```requirements.txt``` using ```pip instal
 #### Upcoming update:
 - ?
 #### Note:
-The Data about security of Hashes is based on my research about them.if you see something wrong ,contact me at x-neron@pm.me or create a (issue)[https://github.com/Justaus3r/Hapie/issues]
+The Data about security of Hashes is based on my research about them.if you see something wrong ,contact me at x-neron@pm.me or create an [issue](https://github.com/Justaus3r/Hapie/issues)
 ### Disclaimer:
 The tool is only for Educational purpose.i am not responsible for consequences of bad use..cheers!
 ### Bug Report:
@@ -71,5 +71,3 @@ Report a issue at https://github.com/Justaus3r/Hapie/issues
 All contributions are welcomed.if you have an suggestion for improvement you can mail me at x-neron@pm.me.if you are a developer and in 1/million chances you want to improve the sorry state code i have written,you are welcomed to fork it and [pull requests](https://github.com/Justaus3r/Hapie/pulls)
 ### License:
 Distributed under GPL3.0.
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=Justaus3r)
