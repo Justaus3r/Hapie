@@ -18,6 +18,8 @@ from passlib.hash import sha256_crypt
 from passlib.hash import sha512_crypt
 from passlib.hash import pbkdf2_sha256
 from passlib.hash import pbkdf2_sha512
+#For coloured text and progressbar
+from colorama import Fore, Back, Style
 from rich.progress import track
 def HashCreate(string):
     Stringlen = len(string)
@@ -387,8 +389,6 @@ def WriteHashForFile(string,outFile,file):
             File.write("pbkdf2_sha512:"+Hash_obj_pbkdf2_sha512+"\n\n")
             File.close()
 
-#For coloured text
-from colorama import Fore, Back, Style
 rand_num = random.randint(1,10)
 file = open("banner/" + f'banner{rand_num}.txt',"r")
 if file.mode == "r":
