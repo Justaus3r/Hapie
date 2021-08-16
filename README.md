@@ -1,6 +1,9 @@
 ## Hapie.py
 ![License](https://img.shields.io/badge/License-GPL3.0-<brightgreen>)
 ![Contribution](https://img.shields.io/badge/Contributions-Welcome-<brightgreen>)
+![language](https://badgen.net/badge/Language/Python/cyan)
+![semver](https://badgen.net/badge/Semantic-Version/1.0.3/purple)
+
 ### Description 🔶
 A command line cryptographic tool to play with various hashes.
 ### Usage:
@@ -49,7 +52,9 @@ python Hapie.py -t "Hello World" -o File.txt
 - Kali linux
 - Mac Os
 
-🔴 **Note:** 🔴  Hapie.py won't run below python 3.9.1
+#### Requirements:
+- Python 3.9 or above
+- For windows user's,visual studio build tools
 
 #### Screenshot:
 ![screenshot](https://drive.google.com/uc?export=download&id=1f3IbB_VM9vhkSBkoS5Nae4-EyVG8KVGx)
