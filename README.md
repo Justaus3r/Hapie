@@ -67,7 +67,7 @@ python Hapie.py -t "Hello World" -o File.txt
 #### Note:
 The Data about security of Hashes is based on my research about them.if you see something wrong ,contact me at x-neron@pm.me or create an [issue](https://github.com/Justaus3r/Hapie/issues)
 ### Disclaimer:
-The tool is only for Educational purpose.i am not responsible for consequences of bad use..cheers!
+The tool is only for Educational purpose.i am not responsible for the actual use of this tool. 
 ### Bug Report:
 Wrong result...?
 Please consider reporting it to me.
