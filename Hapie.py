@@ -19,8 +19,102 @@ from passlib.hash import sha512_crypt
 from passlib.hash import pbkdf2_sha256
 from passlib.hash import pbkdf2_sha512
 #For coloured text and progressbar
-from colorama import Fore, Back, Style
-from rich.progress import track
+from rich import progress ,print
+
+
+VERSION = '1.0.4'
+
+
+_banner_list = [
+rf'''
+  _   _      _       ____     ____            U _____ u 
+ |'| |'| U  /"\  u U|  _"\ uU|  _"\ u  ___    \| ___"|/ 
+/| |_| |\ \/ _ \/  \| |_) |/\| |_) |/ |_"_|    |  _|"   
+U|  _  |u / ___ \   |  __/   |  __/    | |     | |___   
+ |_| |_| /_/   \_\  |_|      |_|     U/| |\u   |_____|  
+ //   \\  \\    >>  ||>>_    ||>>_.-,_|___|_,-.<<   >>  
+(_") ("_)(__)  (__)(__)__)  (__)__)\_)-' '-(_/(__) (__) [by Justaus3r]
+                                                        [ver:{VERSION}]''',
+rf'''
+    )                               
+ ( /(                               
+ )\())    )               (     (   
+((_)\  ( /(  `  )   `  )  )\   ))\  
+ _((_) )(_)) /(/(   /(/( ((_) /((_) 
+| || |((_)_ ((_)_\ ((_)_\ (_)(_))   
+| __ |/ _` || '_ \)| '_ \)| |/ -_)  
+|_||_|\__,_|| .__/ | .__/ |_|\___|  
+            |_|    |_|            [by justaus3r]
+                                  [ver:{VERSION}]''',
+rf'''
+   \\  //       ))    ))   wW  Ww       
+   (o)(o)   /) (o0)-.(o0)-.(O)(O) wWw   
+   ||  || (o)(O)| (_))| (_))(..)  (O)_  
+   |(__)|  //\\ | .-' | .-'  ||  .' __) 
+   /.--.\ |(__)||(    |(    _||_(  _)   
+  -'    `-/,-. | \)    \)  (_/\_)`.__) [by justaus3r] 
+         -'   '' (     (                [ver:{VERSION}]''',
+rf'''
+ _  _   __   ____  ____  __  ____ 
+/ )( \ / _\ (  _ \(  _ \(  )(  __)
+) __ (/    \ ) __/ ) __/ )(  ) _) 
+\_)(_/\_/\_/(__)  (__)  (__)(____)[by justaus3r]
+                                  [ver:{VERSION}]''',
+rf'''
+      ___           ___           ___           ___                       ___     
+     /\__\         /\  \         /\  \         /\  \          ___        /\  \    
+    /:/  /        /::\  \       /::\  \       /::\  \        /\  \      /::\  \   
+   /:/__/        /:/\:\  \     /:/\:\  \     /:/\:\  \       \:\  \    /:/\:\  \  
+  /::\  \ ___   /::\~\:\  \   /::\~\:\  \   /::\~\:\  \      /::\__\  /::\~\:\  \ 
+ /:/\:\  /\__\ /:/\:\ \:\__\ /:/\:\ \:\__\ /:/\:\ \:\__\  __/:/\/__/ /:/\:\ \:\__\
+ \/__\:\/:/  / \/__\:\/:/  / \/__\:\/:/  / \/__\:\/:/  / /\/:/  /    \:\~\:\ \/__/
+      \::/  /       \::/  /       \::/  /       \::/  /  \::/__/      \:\ \:\__\  
+      /:/  /        /:/  /         \/__/         \/__/    \:\__\       \:\ \/__/  
+     /:/  /        /:/  /                                  \/__/        \:\__\    
+     \/__/         \/__/                                                 \/__/ [by justaus3r]
+                                                                               [ver:{VERSION}]''',  
+rf'''
+    __  __                  _    
+   / / / /___ _____  ____  (_)__ 
+  / /_/ / __ `/ __ \/ __ \/ / _ \
+ / __  / /_/ / /_/ / /_/ / /  __/
+/_/ /_/\__,_/ .___/ .___/_/\___/ [by justaus3r]
+           /_/   /_/             [ver:{VERSION}]''',
+rf'''
+,--.  ,--.                      ,--.        
+|  '--'  | ,--,--. ,---.  ,---. `--' ,---.  
+|  .--.  |' ,-.  || .-. || .-. |,--.| .-. : 
+|  |  |  |\ '-'  || '-' '| '-' '|  |\   --. 
+`--'  `--' `--`--'|  |-' |  |-' `--' `----'[by justaus3r] 
+                  `--'   `--'               [ver:{VERSION}]''',
+rf'''
+ __  __     ______     ______   ______   __     ______    
+/\ \_\ \   /\  __ \   /\  == \ /\  == \ /\ \   /\  ___\   
+\ \  __ \  \ \  __ \  \ \  _-/ \ \  _-/ \ \ \  \ \  __\   
+ \ \_\ \_\  \ \_\ \_\  \ \_\    \ \_\    \ \_\  \ \_____\ 
+  \/_/\/_/   \/_/\/_/   \/_/     \/_/     \/_/   \/_____/[by justaus3r]
+                                                         [ver:{VERSION}]''',    
+rf'''
+ .-. .-.  .--.  ,---.  ,---.  ,-.,---.   
+ | | | | / /\ \ | .-.\ | .-.\ |(|| .-'   
+ | `-' |/ /__\ \| |-' )| |-' )(_)| `-.   
+ | .-. ||  __  || |--' | |--' | || .-'   
+ | | |)|| |  |)|| |    | |    | ||  `--. 
+ /(  (_)|_|  (_)/(     /(     `-'/( __.'[by justaus3r] 
+(__)           (__)   (__)      (__)    [ver:{VERSION}]''',
+f'''
+
+██╗░░██╗░█████╗░██████╗░██╗███████╗
+██║░░██║██╔══██╗██╔══██╗██║██╔════╝
+███████║███████║██████╔╝██║█████╗░░
+██╔══██║██╔══██║██╔═══╝░██║██╔══╝░░
+██║░░██║██║░░██║██║░░░░░██║███████╗
+╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝[by justaus3r]
+                                    [ver:{VERSION}]''',    
+    ]
+
+
+
 def HashCreate(string):
     Stringlen = len(string)
     #All MD'S
@@ -81,36 +175,35 @@ def HashCreate(string):
     #pbkdf2_sha512
     Hash_obj_pbkdf2_sha512 = pbkdf2_sha512.hash(string)
     #----------------------print_result-------------------
-    #used Ascii escape character's to print coloured text for ex: \033[96m {}\033[00m
-    print("\n\033[96m ---------------\033[00m\033[91m--------------------\033[00m")
-    print(f"\n\033[96m String:\033[00m{string}")
-    print(f"\n\033[96m String lenght(Including spaces):\033[00m{Stringlen}")
-    print("\n\033[96m ---------------\033[00m\033[91m--------------------\033[00m")
-    print("\n\033[96m MD2:\033[00m",hash_object_md2.hexdigest()+"\033[91m (Not Secure)\033[00m ")
-    print("\n\033[96m MD4:\033[00m",hash_object_md4.hexdigest()+"\033[91m (Not Secure)\033[00m ")
-    print("\n\033[96m MD5:\033[00m",hash_object_md5.hexdigest()+"\033[91m (Not Secure)\033[00m ")
-    print("\n\033[96m Sha1:\033[00m",hash_object_sha1.hexdigest()+"\033[91m (Not Secure)\033[00m ")
-    print("\n\033[96m Sha224:\033[00m",hash_object_sha224.hexdigest()+"\033[92m (Secure)\033[00m")
-    print("\n\033[96m Sha256:\033[00m",hash_object_sha256.hexdigest()+"\033[92m (Secure)\033[00m")
-    print("\n\033[96m Sha384:\033[00m",hash_object_sha384.hexdigest()+"\033[92m (Secure)\033[00m")
-    print("\n\033[96m Sha512:\033[00m",hash_object_sha512.hexdigest()+"\033[92m (Secure)\033[00m")
-    print("\n\033[96m Blake2b:\033[00m",hash_object_blake2b.hexdigest()+"\033[92m (Secure)\033[00m")
-    print("\n\033[96m Blake2s:\033[00m",hash_object_blake2s.hexdigest()+"\033[92m (Secure)\033[00m")
-    print("\n\033[96m Whirlpool:\033[00m",hash_object_whirlpool.hexdigest()+"\033[92m (Secure)\033[00m")
-    print("\n\033[96m LM:\033[00m",hash_object_lm+"\033[91m (Not Secure)\033[00m ")
-    print("\n\033[96m NT:\033[00m",hash_object_nt+"\033[91m (Not Secure)\033[00m ")
-    print("\n\033[96m NTLM:\033[00m",hash_object_ntlm+"\033[93m (Normal)\033[00m")
-    print("\n\033[96m rot13:\033[00m",hash_object_rot13+"\033[91m (Not Secure)\033[00m ")
-    print("\n\033[96m crc32:\033[00m",hash_object_crc32+"\033[91m (Not Secure)\033[00m ")
-    print("\n\033[96m adler32:\033[00m",hash_object_adler32+"\033[93m (Normal)\033[00m")
-    print("\n\033[96m Base64:\033[00m",hash_object_base64+"\033[91m (Not Secure)\033[00m ")
-    print("\n\033[96m ripemd_160:\033[00m",hash_object_ripemd160.hexdigest()+"\033[93m (Normal)\033[00m")
-    print("\n\033[96m Bcrypt:\033[00m",hash_object_bcrypt+"\033[92m (Secure)\033[00m")
-    print("\n\033[96m Argon2:\033[00m",Hash_obj_argon2+"\033[92m (Secure)\033[00m")
-    print("\n\033[96m Sha256_crypt:\033[00m",Hash_obj_sha256_crypt+"\033[92m (Secure)\033[00m")
-    print("\n\033[96m Sha512_crypt:\033[00m",Hash_obj_sha512_crypt+"\033[92m (Secure)\033[00m")
-    print("\n\033[96m pbkdf2_sha256:\033[00m",Hash_obj_pbkdf2_sha256+"\033[92m (Secure)\033[00m")
-    print("\n\033[96m pbkdf2_sha512:\033[00m",Hash_obj_pbkdf2_sha512+"\033[92m (Secure)\033[00m")
+    print("\n[magenta1] ---------------[/magenta1][gold1]--------------------[/gold1]")
+    print(f"\n[green]String:[/green] {string}")
+    print(f"\n[green]String lenght(Including spaces):[/green] {Stringlen}")
+    print("\n[green] ---------------[/green][red]--------------------[/red]")
+    print("\n[green] MD2:[/green]",hash_object_md2.hexdigest()+"[red] (Not Secure)[/red]")
+    print("\n[green] MD4:[/green]",hash_object_md4.hexdigest()+"[red] (Not Secure)[/red] ")
+    print("\n[green] MD5:[/green]",hash_object_md5.hexdigest()+"[red] (Not Secure)[/red] ")
+    print("\n[green] Sha1:[/green]",hash_object_sha1.hexdigest()+"[red] (Not Secure)[/red] ")
+    print("\n[green] Sha224:[/green]",hash_object_sha224.hexdigest()+"[green] (Secure)[/green]")
+    print("\n[green] Sha256:[/green]",hash_object_sha256.hexdigest()+"[green] (Secure)[/green]")
+    print("\n[green] Sha384:[/green]",hash_object_sha384.hexdigest()+"[green] (Secure)[/green]")
+    print("\n[green] Sha512:[/green]",hash_object_sha512.hexdigest()+"[green] (Secure)[/green]")
+    print("\n[green] Blake2b:[/green]",hash_object_blake2b.hexdigest()+"[green] (Secure)[/green]")
+    print("\n[green] Blake2s:[/green]",hash_object_blake2s.hexdigest()+"[green] (Secure)[/green]")
+    print("\n[green] Whirlpool:[/green]",hash_object_whirlpool.hexdigest()+"[green] (Secure)[/green]")
+    print("\n[green] LM:[/green]",hash_object_lm+"[red] (Not Secure)[/red] ")
+    print("\n[green] NT:[/green]",hash_object_nt+"[red] (Not Secure)[/red] ")
+    print("\n[green] NTLM:[/green]",hash_object_ntlm+"[yellow] (Normal)[/yellow]")
+    print("\n[green] rot13:[/green]",hash_object_rot13+"[red] (Not Secure)[/red] ")
+    print("\n[green] crc32:[/green]",hash_object_crc32+"[red] (Not Secure)[/red] ")
+    print("\n[green] adler32:[/green]",hash_object_adler32+"[yellow] (Normal)[/yellow]")
+    print("\n[green] Base64:[/green]",hash_object_base64+"[red] (Not Secure)[/red] ")
+    print("\n[green] ripemd_160:[/green]",hash_object_ripemd160.hexdigest()+"[yellow] (Normal)[/yellow]")
+    print("\n[green] Bcrypt:[/green]",hash_object_bcrypt+"[green] (Secure)[/green]")
+    print("\n[green] Argon2:[/green]",Hash_obj_argon2+"[green] (Secure)[/green]")
+    print("\n[green] Sha256_crypt:[/green]",Hash_obj_sha256_crypt+"[green] (Secure)[/green]")
+    print("\n[green] Sha512_crypt:[/green]",Hash_obj_sha512_crypt+"[green] (Secure)[/green]")
+    print("\n[green] pbkdf2_sha256:[/green]",Hash_obj_pbkdf2_sha256+"[green] (Secure)[/green]")
+    print("\n[green] pbkdf2_sha512:[/green]",Hash_obj_pbkdf2_sha512+"[green] (Secure)[/green]")
 def HashWrite(string,file):
     #All MD'S
     hash_object_md2 = MD2.new()
@@ -253,33 +346,32 @@ def HashCreateForFile(string,file):
         #pbkdf2_sha512
         Hash_obj_pbkdf2_sha512 = pbkdf2_sha512.hash(string)
         #----------------------print_result-------------------
-        #used Ascii escape character's to print coloured text for ex: \033[96m {}\033[00m
         print("--------------------------------")
-        print(f"\n\033[96m File:\033[00m{file}")
+        print(f"\n[green] File:\033[00m{file}")
         print("--------------------------------")
-        print("\n\033[96m MD2:\033[00m",hash_object_md2.hexdigest()+"\033[91m (Not Secure)\033[00m ")
-        print("\n\033[96m MD4:\033[00m",hash_object_md4.hexdigest()+"\033[91m (Not Secure)\033[00m ")
-        print("\n\033[96m MD5:\033[00m",hash_object_md5.hexdigest()+"\033[91m (Not Secure)\033[00m ")
-        print("\n\033[96m Sha1:\033[00m",hash_object_sha1.hexdigest()+"\033[91m (Not Secure)\033[00m ")
-        print("\n\033[96m Sha224:\033[00m",hash_object_sha224.hexdigest()+"\033[92m (Secure)\033[00m")
-        print("\n\033[96m Sha256:\033[00m",hash_object_sha256.hexdigest()+"\033[92m (Secure)\033[00m")
-        print("\n\033[96m Sha384:\033[00m",hash_object_sha384.hexdigest()+"\033[92m (Secure)\033[00m")
-        print("\n\033[96m Sha512:\033[00m",hash_object_sha512.hexdigest()+"\033[92m (Secure)\033[00m")
-        print("\n\033[96m Blake2b:\033[00m",hash_object_blake2b.hexdigest()+"\033[92m (Secure)\033[00m")
-        print("\n\033[96m Blake2s:\033[00m",hash_object_blake2s.hexdigest()+"\033[92m (Secure)\033[00m")
-        print("\n\033[96m Whirlpool:\033[00m",hash_object_whirlpool.hexdigest()+"\033[92m (Secure)\033[00m")
-        print("\n\033[96m LM:\033[00m",hash_object_lm+"\033[91m (Not Secure)\033[00m ")
-        print("\n\033[96m NT:\033[00m",hash_object_nt+"\033[91m (Not Secure)\033[00m ")
-        print("\n\033[96m crc32:\033[00m",hash_object_crc32+"\033[91m (Not Secure)\033[00m ")
-        print("\n\033[96m adler32:\033[00m",hash_object_adler32+"\033[93m (Normal)\033[00m")
-        print("\n\033[96m Base64:\033[00m",hash_object_base64+"\033[91m (Not Secure)\033[00m ")
-        print("\n\033[96m ripemd_160:\033[00m",hash_object_ripemd160.hexdigest()+"\033[93m (Normal)\033[00m")
-        print("\n\033[96m Bcrypt:\033[00m",hash_object_bcrypt+"\033[92m (Secure)\033[00m")
-        print("\n\033[96m Argon2:\033[00m",Hash_obj_argon2+"\033[92m (Secure)\033[00m")
-        print("\n\033[96m Sha256_crypt:\033[00m",Hash_obj_sha256_crypt+"\033[92m (Secure)\033[00m")
-        print("\n\033[96m Sha512_crypt:\033[00m",Hash_obj_sha512_crypt+"\033[92m (Secure)\033[00m")
-        print("\n\033[96m pbkdf2_sha256:\033[00m",Hash_obj_pbkdf2_sha256+"\033[92m (Secure)\033[00m")
-        print("\n\033[96m pbkdf2_sha512:\033[00m",Hash_obj_pbkdf2_sha512+"\033[92m (Secure)\033[00m")
+        print("\n[green] MD2:[/green]",hash_object_md2.hexdigest()+"[red] (Not Secure)[/red]")
+        print("\n[green] MD4:[/green]",hash_object_md4.hexdigest()+"[red] (Not Secure)[/red]")
+        print("\n[green] MD5:[/green]",hash_object_md5.hexdigest()+"[red] (Not Secure)[/red]")
+        print("\n[green] Sha1:[/green]",hash_object_sha1.hexdigest()+"[red] (Not Secure)[/red]")
+        print("\n[green] Sha224:[/green]",hash_object_sha224.hexdigest()+"[green] (Secure)[/green]")
+        print("\n[green] Sha256:[/green]",hash_object_sha256.hexdigest()+"[green] (Secure)[/green]")
+        print("\n[green] Sha384:[/green]",hash_object_sha384.hexdigest()+"[green] (Secure)[/green]")
+        print("\n[green] Sha512:[/green]",hash_object_sha512.hexdigest()+"[green] (Secure)[/green]")
+        print("\n[green] Blake2b:[/green]",hash_object_blake2b.hexdigest()+"[green] (Secure)[/green]")
+        print("\n[green] Blake2s:[/green]",hash_object_blake2s.hexdigest()+"[green] (Secure)[/green]")
+        print("\n[green] Whirlpool:[/green]",hash_object_whirlpool.hexdigest()+"[green] (Secure)[/green]")
+        print("\n[green] LM:[/green]",hash_object_lm+"[red] (Not Secure)[/red]")
+        print("\n[green] NT:[/green]",hash_object_nt+"[red] (Not Secure)[/red]")
+        print("\n[green] crc32:[/green]",hash_object_crc32+"[red] (Not Secure)[/red]")
+        print("\n[green] adler32:[/green]",hash_object_adler32+"[yellow] (Normal)[/yellow]")
+        print("\n[green] Base64:[/green]",hash_object_base64+"[red] (Not Secure)[/red]")
+        print("\n[green] ripemd_160:[/green]",hash_object_ripemd160.hexdigest()+"[yellow] (Normal)[/yellow]")
+        print("\n[green] Bcrypt:[/green]",hash_object_bcrypt+"[green] (Secure)[/green]")
+        print("\n[green] Argon2:[/green]",Hash_obj_argon2+"[green] (Secure)[/green]]")
+        print("\n[green] Sha256_crypt:[/green]",Hash_obj_sha256_crypt+"[green] (Secure)[/green]")
+        print("\n[green] Sha512_crypt:[/green]",Hash_obj_sha512_crypt+"[green] (Secure)[/green]")
+        print("\n[green] pbkdf2_sha256:[/green]",Hash_obj_pbkdf2_sha256+"[green] (Secure)[/green]")
+        print("\n[green] pbkdf2_sha512:[/green]",Hash_obj_pbkdf2_sha512+"[green] (Secure)[/green]")
 def WriteHashForFile(string,outFile,file):
             hash_object_md2 = MD2.new()
             hash_object_md2.update(string)
@@ -334,33 +426,32 @@ def WriteHashForFile(string,outFile,file):
             #pbkdf2_sha512
             Hash_obj_pbkdf2_sha512 = pbkdf2_sha512.hash(string)
             #----------------------print_result-------------------
-            #used Ascii escape character's to print coloured text for ex: \033[96m {}\033[00m
             print("--------------------------------")
-            print(f"\n\033[96m File:\033[00m{file}")
+            print(f"\n[green] File:[/green] {file}")
             print("--------------------------------")
-            print("\n\033[96m MD2:\033[00m",hash_object_md2.hexdigest()+"\033[91m (Not Secure)\033[00m ")
-            print("\n\033[96m MD4:\033[00m",hash_object_md4.hexdigest()+"\033[91m (Not Secure)\033[00m ")
-            print("\n\033[96m MD5:\033[00m",hash_object_md5.hexdigest()+"\033[91m (Not Secure)\033[00m ")
-            print("\n\033[96m Sha1:\033[00m",hash_object_sha1.hexdigest()+"\033[91m (Not Secure)\033[00m ")
-            print("\n\033[96m Sha224:\033[00m",hash_object_sha224.hexdigest()+"\033[92m (Secure)\033[00m")
-            print("\n\033[96m Sha256:\033[00m",hash_object_sha256.hexdigest()+"\033[92m (Secure)\033[00m")
-            print("\n\033[96m Sha384:\033[00m",hash_object_sha384.hexdigest()+"\033[92m (Secure)\033[00m")
-            print("\n\033[96m Sha512:\033[00m",hash_object_sha512.hexdigest()+"\033[92m (Secure)\033[00m")
-            print("\n\033[96m Blake2b:\033[00m",hash_object_blake2b.hexdigest()+"\033[92m (Secure)\033[00m")
-            print("\n\033[96m Blake2s:\033[00m",hash_object_blake2s.hexdigest()+"\033[92m (Secure)\033[00m")
-            print("\n\033[96m Whirlpool:\033[00m",hash_object_whirlpool.hexdigest()+"\033[92m (Secure)\033[00m")
-            print("\n\033[96m LM:\033[00m",hash_object_lm+"\033[91m (Not Secure)\033[00m ")
-            print("\n\033[96m NT:\033[00m",hash_object_nt+"\033[91m (Not Secure)\033[00m ")
-            print("\n\033[96m crc32:\033[00m",hash_object_crc32+"\033[91m (Not Secure)\033[00m ")
-            print("\n\033[96m adler32:\033[00m",hash_object_adler32+"\033[93m (Normal)\033[00m")
-            print("\n\033[96m Base64:\033[00m",hash_object_base64+"\033[91m (Not Secure)\033[00m ")
-            print("\n\033[96m ripemd_160:\033[00m",hash_object_ripemd160.hexdigest()+"\033[93m (Normal)\033[00m")
-            print("\n\033[96m Bcrypt:\033[00m",hash_object_bcrypt+"\033[92m (Secure)\033[00m")
-            print("\n\033[96m Argon2:\033[00m",Hash_obj_argon2+"\033[92m (Secure)\033[00m")
-            print("\n\033[96m Sha256_crypt:\033[00m",Hash_obj_sha256_crypt+"\033[92m (Secure)\033[00m")
-            print("\n\033[96m Sha512_crypt:\033[00m",Hash_obj_sha512_crypt+"\033[92m (Secure)\033[00m")
-            print("\n\033[96m pbkdf2_sha256:\033[00m",Hash_obj_pbkdf2_sha256+"\033[92m (Secure)\033[00m")
-            print("\n\033[96m pbkdf2_sha512:\033[00m",Hash_obj_pbkdf2_sha512+"\033[92m (Secure)\033[00m")
+            print("\n[green] MD2:[/green]",hash_object_md2.hexdigest()+"[red] (Not Secure)[/red] ")
+            print("\n[green] MD4:[/green]",hash_object_md4.hexdigest()+"[red] (Not Secure)[/red] ")
+            print("\n[green] MD5:[/green]",hash_object_md5.hexdigest()+"[red] (Not Secure)[/red] ")
+            print("\n[green] Sha1:[/green]",hash_object_sha1.hexdigest()+"[red] (Not Secure)[/red] ")
+            print("\n[green] Sha224:[/green]",hash_object_sha224.hexdigest()+"[green] (Secure)[/green]")
+            print("\n[green] Sha256:[/green]",hash_object_sha256.hexdigest()+"[green] (Secure)[/green]")
+            print("\n[green] Sha384:[/green]",hash_object_sha384.hexdigest()+"[green] (Secure)[/green]")
+            print("\n[green] Sha512:[/green]",hash_object_sha512.hexdigest()+"[green] (Secure)[/green]")
+            print("\n[green] Blake2b:[/green]",hash_object_blake2b.hexdigest()+"[green] (Secure)[/green]")
+            print("\n[green] Blake2s:[/green]",hash_object_blake2s.hexdigest()+"[green] (Secure)[/green]")
+            print("\n[green] Whirlpool:[/green]",hash_object_whirlpool.hexdigest()+"[green] (Secure)[/green]")
+            print("\n[green] LM:[/green]",hash_object_lm+"[red] (Not Secure)[/red] ")
+            print("\n[green] NT:[/green]",hash_object_nt+"[red] (Not Secure)[/red] ")
+            print("\n[green] crc32:[/green]",hash_object_crc32+"[red] (Not Secure)[/red] ")
+            print("\n[green] adler32:[/green]",hash_object_adler32+"[yellow] (Normal)[/yellow]")
+            print("\n[green] Base64:[/green]",hash_object_base64+"[red] (Not Secure)[/red] ")
+            print("\n[green] ripemd_160:[/green]",hash_object_ripemd160.hexdigest()+"[yellow] (Normal)[/yellow]")
+            print("\n[green] Bcrypt:[/green]",hash_object_bcrypt+"[green] (Secure)[/green]")
+            print("\n[green] Argon2:[/green]",Hash_obj_argon2+"[green] (Secure)[/green]")
+            print("\n[green] Sha256_crypt:[/green]",Hash_obj_sha256_crypt+"[green] (Secure)[/green]")
+            print("\n[green] Sha512_crypt:[/green]",Hash_obj_sha512_crypt+"[green] (Secure)[/green]")
+            print("\n[green] pbkdf2_sha256:[/green]",Hash_obj_pbkdf2_sha256+"[green] (Secure)[/green]")
+            print("\n[green] pbkdf2_sha512:[/green]",Hash_obj_pbkdf2_sha512+"[green] (Secure)[/green]")
             File = open(f"{outFile}","w")
             File.close()
             File = open(f"{outFile}","a")
@@ -389,66 +480,68 @@ def WriteHashForFile(string,outFile,file):
             File.write("pbkdf2_sha512:"+Hash_obj_pbkdf2_sha512+"\n\n")
             File.close()
 
-rand_num = random.randint(1,10)
-file = open("banner/" + f'banner{rand_num}.txt',"r")
-if file.mode == "r":
-    banner = file.read()
+def displayBanner():
+    banner = random.choice(_banner_list)
     #Colourful banner
     rand_colour_number =random.randint(1,5)
     if rand_colour_number == 1:
-        print(Fore.RED+banner)
+        print(f"[red]{banner}[/red]")
     elif rand_colour_number == 2:
-        print(Fore.GREEN+banner)
+        print(f"[green]{banner}[/green]")
     elif rand_colour_number == 3:
-        print(Fore.BLUE+banner)
+        print(f"[cyan]{banner}[/cyan]")
     elif rand_colour_number == 4:
-        print(Fore.YELLOW+banner)
+        print(f"[yellow]{banner}[/yellow]")
     else:
-        print(Fore.MAGENTA+banner)
-print("""
-A tool to play with Hashes.
-Report a bug at x-neron@pm.me
-"""
-)
-print(Style.RESET_ALL)
-if len(sys.argv) == 3 and sys.argv[1] == '-t':
-    string = (sys.argv[2])
-    for step in track(range(1)):
-        step
-    HashCreate(string)
-elif len(sys.argv) == 5 and sys.argv[1] == '-t' and sys.argv[3] =='-o':
-        string = (sys.argv[2])
-        file = (sys.argv[4])
-        #using for loop for progress bar
-        for step in track(range(1)):
-           step
-        HashCreate(string)
-        HashWrite(string,file)
-elif len(sys.argv) == 3 and sys.argv[1] == '-f':
-    file = (sys.argv[2])
-    File = open(f"{file}","rb")
-    string = File.read()
-    for step in track(range(1)):
-       step
-    HashCreateForFile(string,file)
-elif len(sys.argv) == 5 and sys.argv [1] == '-f' and sys.argv[3] =='-o':
-    file = (sys.argv[2])
-    File = open(f"{file}","rb")
-    outFile = (sys.argv[4])
-    string = File.read()
-    for step in track(range(1)):
-       step
-    WriteHashForFile(string,outFile,file)
-
-else:
-    print("\033[95m Description:\033[00m\nA little tool to play with hashes.")
-    print("\033[94m (+) Usage:\033[00m\nHapie.py -t <input string>/-f<input file> [Optional -o <output file>]")
+        print(f"[purple]{banner}[/purple]")
     print("""
-       \033[92m Example:\033[00m
-              python Hapie.py -t "Hello World"
-              python Hapie.py -f Onichan_no_baka.txt
-             or
-              python Hapie.py -t "Hello World" -o File.txt
-              python Hapie.py -f Onichan_no_baka.txt -o YameteOnichan.txt
-              Report a issue at github.com/justaus3r/Hapie/issues
-    """)
+    A tool to play with Hashes.
+    Report a bug at x-neron@pm.me
+    """
+    )
+
+def main():
+    if len(sys.argv) == 3 and sys.argv[1] == '-t':
+        string = (sys.argv[2])
+        for step in progress.track(range(1)):
+            step
+        HashCreate(string)
+    elif len(sys.argv) == 5 and sys.argv[1] == '-t' and sys.argv[3] =='-o':
+            string = (sys.argv[2])
+            file = (sys.argv[4])
+            #using for loop for progress bar
+            for step in progress.track(range(1)):
+               step
+            HashCreate(string)
+            HashWrite(string,file)
+    elif len(sys.argv) == 3 and sys.argv[1] == '-f':
+        file = (sys.argv[2])
+        File = open(f"{file}","rb")
+        string = File.read()
+        for step in progress.track(range(1)):
+           step
+        HashCreateForFile(string,file)
+    elif len(sys.argv) == 5 and sys.argv [1] == '-f' and sys.argv[3] =='-o':
+        file = (sys.argv[2])
+        File = open(f"{file}","rb")
+        outFile = (sys.argv[4])
+        string = File.read()
+        for step in progress.track(range(1)):
+           step
+        WriteHashForFile(string,outFile,file)
+
+    else:
+        print("[green]Description:[/green]\nA little tool to play with hashes.")
+        print("[cyan] (+) Usage:[/cyan]\nHapie.py -t <input string>/-f<input file> [Optional -o <output file>]")
+        print("""
+           [purple]Example:[/purple]
+                  python Hapie.py -t "Hello World"
+                  python Hapie.py -f Onichan_no_baka.txt
+                 or
+                  python Hapie.py -t "Hello World" -o File.txt
+                  python Hapie.py -f Onichan_no_baka.txt -o YameteOnichan.txt
+                  Report a issue at github.com/justaus3r/Hapie/issues
+        """)
+
+displayBanner()
+main()
