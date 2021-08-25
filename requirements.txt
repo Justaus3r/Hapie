@@ -1,5 +1,4 @@
 passlib==1.7.2
-colorama==0.4.3
 Whirlpool==1.0.0
 argon2_cffi==20.1.0
 argon2==0.1.10
