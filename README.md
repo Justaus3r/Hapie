@@ -2,7 +2,7 @@
 ![License](https://img.shields.io/badge/License-GPL3.0-<brightgreen>)
 ![Contribution](https://img.shields.io/badge/Contributions-Welcome-<brightgreen>)
 ![language](https://badgen.net/badge/Language/Python/cyan)
-![semver](https://badgen.net/badge/Semantic-Version/1.0.3/purple)
+![semver](https://badgen.net/badge/Semantic-Version/1.0.4/purple)
 
 ### Description 🔶
 A command line cryptographic tool to play with various hashes.
