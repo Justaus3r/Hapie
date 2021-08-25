@@ -19,7 +19,7 @@ python3 Hapie.py -t "Hello World"
 python3 Hapie.py -f Onichan_no_baka.txt  
 python Hapie.py -t "Hello World" -o File.txt 
 ```
-#### Hashes supported/features:
+#### Hash algorithms supported/features:
 - MD2
 - MD4
 - MD5
@@ -45,6 +45,7 @@ python Hapie.py -t "Hello World" -o File.txt
 - SHA512_CRYPT
 - PBKDF2_SHA256
 - PBKDF2_SHA512
+- you can hash a file
 - you can save the output to a file
 - random banner's
 - A pretty progress bar
@@ -60,13 +61,14 @@ python Hapie.py -t "Hello World" -o File.txt
 ![screenshot](https://drive.google.com/uc?export=download&id=1f3IbB_VM9vhkSBkoS5Nae4-EyVG8KVGx)
 ### CommitTable:
 
-| Date:         | Comment:                                        | 
-| ------------- |:-------------:                                  | 
-| 19-feb-2021   | Initial Release                                 | 
-| 21-feb-2021   | Version 1.0.2 (Added support for File Hashing)  |  
-| 22-feb-2021   | Added a progress bar                            | 
-| 12-mar-2021   | Small fixes                                     |
-| 4-may-2021    | Fixed multiple crashes on text and file Hashing |
+| Date:         | Comment:                                            | 
+| ------------- |:-------------:                                      | 
+| 19-feb-2021   | Initial Release                                     | 
+| 21-feb-2021   | Version 1.0.2 (Added support for File Hashing)      |  
+| 22-feb-2021   | Added a progress bar                                | 
+| 12-mar-2021   | Small fixes                                         |
+| 4-may-2021    | Fixed multiple crashes on text and file Hashing     |
+| 25-aug-2021   | Refactor entire code-base and bump version to 1.0.4 |
 #### Upcoming update:
 - ?
 #### Note:
